@@ -13,7 +13,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 Bundle 'zeis/vim-kolor'
 Bundle 'tomasr/molokai'
-Bundle 'altercation/vim-colors-solarized.git' 
+Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " }}}
 
@@ -37,10 +37,8 @@ filetype plugin indent on     " required
 " }}}
 
 " Basic settings --- {{{
-set incsearch
+set incsearch hlsearch
 set ignorecase smartcase
-set nohlsearch
-set number
 
 syntax enable
 set background=dark
@@ -54,21 +52,6 @@ let localmapleader = "\\"
 " Exit from insert mode
 inoremap jk <esc>
 
-" Cancels arrow key in modes --- {{{
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
-" }}}
-
 " Move to start or end of line with H and L
 nnoremap H 0
 nnoremap L $
@@ -77,14 +60,11 @@ nnoremap L $
 nnoremap _ ddkkp
 nnoremap - ddp
 
-" Adds a new line
-nnoremap <cr> I<cr><esc>
-
 " Make current word uppercase
 inoremap <leader><c-u> <esc>evbUea
 nnoremap <leader><c-u> evbUel
 
-" Edit .vimsrc and source 
+" Edit .vimsrc and source
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
@@ -99,6 +79,18 @@ onoremap il( :<c-u>normal! f(vi(<cr>
 
 " Change in next email
 onoremap in@ :<c-u>execute "normal! /[a-zA-Z.-]\\+@\\w\\+\\.\\w\\+\rv/@\rh"<cr>
+
+" Opens previous buffer in a vertical split on the right
+nnoremap <leader>op :execute "rightbelow vsplit " . bufname("#")<cr>
+
+" Default search to use 'very magic'
+nnoremap / /\v
+
+" Highlights all whitespaces
+nnoremap <leader>w /\v +$/<cr>
+
+" Turn off search highlight
+nnoremap <leader>W :setlocal nohlsearch<cr>
 " }}}
 
 " Status line --- {{{
@@ -129,6 +121,7 @@ augroup END
 augroup filetype_python
 	autocmd!
 	autocmd FileType python	nnoremap <buffer> <leader>c I#<esc>
+	autocmd FileType python :iabbrev <buffer> iff if:<left>
 augroup END
 
 augroup filetype_javascript
@@ -138,13 +131,28 @@ augroup END
 
 augroup filetype_markdown
 	autocmd!
-	autocmd FileType markdown onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+\\\|^--\\+$\r:nohlsearch\rkvg_"<cr>
-	autocmd FileType markdown onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+\\\|^--\\+$\r:nohlsearch\rg_vk0"<cr>
+	" Change in headings
+	autocmd FileType markdown onoremap <buffer> ih :<c-u>execute
+		\ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rkvg_"<cr>
+	" Change around headings
+	autocmd FileType markdown onoremap <buffer> ah :<c-u>execute
+		\ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rg_vk0"<cr>
 augroup END
 
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim nnoremap <buffer> <leader>c I"<esc>
+augroup END
+
+augroup filetype_php
+	autocmd!
+	autocmd FileType php :iabbrev <buffer> pub public
+	autocmd FileType php :iabbrev <buffer> pri private
+	autocmd FileType php :iabbrev <buffer> func function
+	autocmd FileType php :iabbrev <buffer> php <?php
+	autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
+	autocmd FileType php :iabbrev <buffer> for for ()<left>
 augroup END
 " }}}
 
