@@ -40,6 +40,11 @@ filetype plugin indent on     " required
 set incsearch hlsearch
 set ignorecase smartcase
 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 syntax enable
 set background=dark
 colorscheme solarized
