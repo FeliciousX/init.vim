@@ -42,8 +42,15 @@ set ignorecase smartcase
 
 set tabstop=4
 set shiftwidth=4
+set shiftround
 set softtabstop=4
 set expandtab
+
+set nowrap
+
+set number
+set relativenumber
+set numberwidth=2
 
 syntax enable
 set background=dark
@@ -69,8 +76,8 @@ nnoremap - ddp
 inoremap <leader><c-u> <esc>evbUea
 nnoremap <leader><c-u> evbUel
 
-" Edit .vimsrc and source
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Edit .vimrc and source
+nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Cover word with quotation marks in normal mode and visual mode
@@ -78,9 +85,16 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 
-" Deleting stuff in paranthesis
+" Deleting stuff in/around next/last paranthesis
 onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap an( :<c-u>normal! f(bvg_<cr>
+onoremap al( :<c-u>normal! F)%bvg_<cr>
+" Deleting stuff in/around next/last curly bracket
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap il{ :<c-u>normal! F}vi{<cr>
+onoremap an{ :<c-u>normal! f{bvg_<cr>
+onoremap al{ :<c-u>normal! F}%bvg_<cr>
 
 " Change in next email
 onoremap in@ :<c-u>execute "normal! /[a-zA-Z.-]\\+@\\w\\+\\.\\w\\+\rv/@\rh"<cr>
@@ -115,33 +129,41 @@ iabbrev ssig -- <cr>FeliciousX<cr>feliciousx@gmail.com
 " }}}
 
 " FileType-specific settings --- {{{
+augroup autoindent
+    autocmd!
+    autocmd BufWritePre,BufRead *.html :normal gg=G
+    autocmd BufWritePre,BufRead *.js :normal gg=G
+    autocmd BufWritePre,BufRead *.cpp :normal gg=G
+    autocmd BufWritePre,BufRead *.c :normal gg=G
+    autocmd BufWritePre,BufRead *.java :normal gg=G
+augroup END
+
 augroup filetype_html
-	autocmd!
-	autocmd FileType html setlocal nowrap
-	autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
-	" Auto indent html file
-	autocmd BufWritePre,BufRead *.html :normal gg=G
+    autocmd!
+    autocmd FileType html setlocal nowrap
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
 
 augroup filetype_python
-	autocmd!
-	autocmd FileType python	nnoremap <buffer> <leader>c I#<esc>
-	autocmd FileType python :iabbrev <buffer> iff if:<left>
+    autocmd!
+    autocmd FileType python	nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType python :iabbrev <buffer> iff if:<left>
 augroup END
 
 augroup filetype_javascript
-	autocmd!
-	autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType javascript :iabbrev <buffer> func function() {}<left><cr><up><esc>A
 augroup END
 
 augroup filetype_markdown
-	autocmd!
-	" Change in headings
-	autocmd FileType markdown onoremap <buffer> ih :<c-u>execute
-		\ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rkvg_"<cr>
-	" Change around headings
-	autocmd FileType markdown onoremap <buffer> ah :<c-u>execute
-		\ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rg_vk0"<cr>
+    autocmd!
+    " Change in headings
+    autocmd FileType markdown onoremap <buffer> ih :<c-u>execute
+                \ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rkvg_"<cr>
+    " Change around headings
+    autocmd FileType markdown onoremap <buffer> ah :<c-u>execute
+                \ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rg_vk0"<cr>
 augroup END
 
 augroup filetype_vim
@@ -151,13 +173,11 @@ augroup filetype_vim
 augroup END
 
 augroup filetype_php
-	autocmd!
-	autocmd FileType php :iabbrev <buffer> pub public
-	autocmd FileType php :iabbrev <buffer> pri private
-	autocmd FileType php :iabbrev <buffer> func function
-	autocmd FileType php :iabbrev <buffer> php <?php
-	autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
-	autocmd FileType php :iabbrev <buffer> for for ()<left>
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
+    autocmd FileType php :iabbrev <buffer> for for ()<left>
 augroup END
+
 " }}}
 
