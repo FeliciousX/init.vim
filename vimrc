@@ -140,7 +140,6 @@ augroup END
 
 augroup filetype_html
     autocmd!
-    autocmd FileType html setlocal nowrap
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
 
@@ -177,6 +176,11 @@ augroup filetype_php
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
     autocmd FileType php :iabbrev <buffer> for for ()<left>
+augroup END
+
+augroup filetype_lua
+    autocmd!
+    autocmd FileType lua setlocal foldmethod=marker
 augroup END
 
 " }}}
