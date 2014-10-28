@@ -9,12 +9,20 @@ Bundle 'gmarik/vundle'
 
 " Bundles available on github --- {{{
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails.git'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'bling/vim-airline'
 Bundle 'zeis/vim-kolor'
 Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'mileszs/ack.vim'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
 " }}}
 
 " Bundles on http://vim-scripts.org/vim/scripts.html --- {{{
@@ -36,6 +44,24 @@ filetype plugin indent on     " required
 " NOTE: comments after Bundle commands are not allowed.
 " }}}
 
+" Color Scheme settings --- {{{
+"  option name default optional 
+"  g:solarized_termcolors= 16 | 256
+"  g:solarized_termtrans = 0 | 1
+"  g:solarized_degrade = 0 | 1
+"  g:solarized_bold = 1 | 0
+"  g:solarized_underline = 1 | 0
+"  g:solarized_italic = 1 | 0
+"  g:solarized_contrast = “normal”| “high” or “low”
+"  g:solarized_visibility= “normal”| “high” or “low” 
+
+let g:solarized_termtrans = 1
+syntax enable
+set background=dark
+colorscheme solarized
+
+" }}}
+
 " Basic settings --- {{{
 set incsearch hlsearch
 set ignorecase smartcase
@@ -52,15 +78,26 @@ set number
 set relativenumber
 set numberwidth=2
 
-syntax enable
-set background=dark
-colorscheme solarized
+set t_Co=256
 
 let mapleader = ","
 let localmapleader = "\\"
+
+" Setting up vim-airline powerline
+let g:airline_powerline_fonts = 1
+set laststatus=2
+
+" Sets NERDTree to open by default
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " }}}
 
 " Mappings --- {{{
+
+" Toggles NERDTree
+noremap <C-n> :NERDTreeToggle<CR>
+
 " Exit from insert mode
 inoremap jk <esc>
 
@@ -110,17 +147,6 @@ nnoremap <leader>w /\v +$/<cr>
 
 " Turn off search highlight
 nnoremap <leader>W :setlocal nohlsearch<cr>
-" }}}
-
-" Status line --- {{{
-set laststatus=2	  " Always show status bar
-
-set statusline=%.25f      " Path to the file
-set statusline+=\ %y	  " Filetype of file
-set statusline+=%=        " Switch to the right side
-set statusline+=%l        " Current line
-set statusline+=/         " Separator
-set statusline+=%L        " Total lines
 " }}}
 
 " Abbreviations and typo correction --- {{{
