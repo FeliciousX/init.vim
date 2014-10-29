@@ -20,7 +20,7 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 " }}}
@@ -45,7 +45,7 @@ filetype plugin indent on     " required
 " }}}
 
 " Color Scheme settings --- {{{
-"  option name default optional 
+"  option name default optional
 "  g:solarized_termcolors= 16 | 256
 "  g:solarized_termtrans = 0 | 1
 "  g:solarized_degrade = 0 | 1
@@ -53,7 +53,7 @@ filetype plugin indent on     " required
 "  g:solarized_underline = 1 | 0
 "  g:solarized_italic = 1 | 0
 "  g:solarized_contrast = “normal”| “high” or “low”
-"  g:solarized_visibility= “normal”| “high” or “low” 
+"  g:solarized_visibility= “normal”| “high” or “low”
 
 let g:solarized_termtrans = 1
 syntax enable
@@ -91,6 +91,8 @@ set laststatus=2
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" Set Ack to use Silver Searcher (Ag)
+let g:ackprg = 'ag --nogroup --nocolor --column'
 " }}}
 
 " Mappings --- {{{
@@ -100,6 +102,16 @@ noremap <C-n> :NERDTreeToggle<CR>
 
 " Exit from insert mode
 inoremap jk <esc>
+
+" Getting rid of arrow keys
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Allow moving up and down even when word is wrapped
+nnoremap j gj
+nnoremap k gk
 
 " Move to start or end of line with H and L
 nnoremap H 0
@@ -132,6 +144,14 @@ onoremap in{ :<c-u>normal! f{vi{<cr>
 onoremap il{ :<c-u>normal! F}vi{<cr>
 onoremap an{ :<c-u>normal! f{bvg_<cr>
 onoremap al{ :<c-u>normal! F}%bvg_<cr>
+" Deleting stuff in/around next/last square bracket
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap il[ :<c-u>normal! F]vi[<cr>
+onoremap an[ :<c-u>normal! f[bvg_<cr>
+onoremap al[ :<c-u>normal! F]%bvg_<cr>
+
+" Autocomplete curly bracket
+inoremap {<cr> {<cr>}<Esc>O
 
 " Change in next email
 onoremap in@ :<c-u>execute "normal! /[a-zA-Z.-]\\+@\\w\\+\\.\\w\\+\rv/@\rh"<cr>
@@ -146,7 +166,7 @@ nnoremap / /\v
 nnoremap <leader>w /\v +$/<cr>
 
 " Turn off search highlight
-nnoremap <leader>W :setlocal nohlsearch<cr>
+nnoremap <leader><space> :setlocal nohlsearch<cr>
 " }}}
 
 " Abbreviations and typo correction --- {{{
@@ -155,6 +175,8 @@ iabbrev ssig -- <cr>FeliciousX<cr>feliciousx@gmail.com
 " }}}
 
 " FileType-specific settings --- {{{
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 augroup autoindent
     autocmd!
     autocmd BufWritePre,BufRead *.html :normal gg=G
