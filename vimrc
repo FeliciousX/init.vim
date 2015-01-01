@@ -23,6 +23,13 @@ Bundle 'scrooloose/syntastic'
 Bundle 'rking/ag.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
+Bundle 'xolox/vim-session'
+Bundle 'wakatime/vim-wakatime'
+" }}}
+
+" Plugins from vimawesome.com --- {{{
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdcommenter'
 " }}}
 
 " Bundles on http://vim-scripts.org/vim/scripts.html --- {{{
@@ -88,11 +95,27 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 
 " Sets NERDTree to open by default
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Easytags setup {{{
+" Set Easytags to save to .tags in the local folder
+set tags=./tags
+" Create the local tag file if not exist
+let g:easytags_dynamic_files=2
+""Run Easytags async
+let g:easytags_async=1
+autocmd FileType *.js,*.py,*.rb,*.php BufWritePost UpdateTags
+" }}}
+
+" vim-session settings {{{
+let g:session_autosave = 'yes'
+let g:session_autoload = 'yes'
+let g:session_autosave_periodic = 5
+" }}}
 " }}}
 
 " Mappings --- {{{
@@ -179,11 +202,9 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 augroup autoindent
     autocmd!
-    autocmd BufWritePre,BufRead *.html :normal gg=G
-    autocmd BufWritePre,BufRead *.js :normal gg=G
-    autocmd BufWritePre,BufRead *.cpp :normal gg=G
-    autocmd BufWritePre,BufRead *.c :normal gg=G
-    autocmd BufWritePre,BufRead *.java :normal gg=G
+    autocmd BufRead *.cpp :normal gg=G
+    autocmd BufRead *.c :normal gg=G
+    autocmd BufRead *.java :normal gg=G
 augroup END
 
 augroup filetype_html
@@ -223,7 +244,6 @@ augroup filetype_php
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
-    autocmd FileType php :iabbrev <buffer> for for ()<left>
 augroup END
 
 augroup filetype_lua
