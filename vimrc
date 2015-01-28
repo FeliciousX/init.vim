@@ -30,6 +30,7 @@ Bundle 'wakatime/vim-wakatime'
 " Plugins from vimawesome.com --- {{{
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'renamer.vim'
 " }}}
 
 " Bundles on http://vim-scripts.org/vim/scripts.html --- {{{
@@ -102,12 +103,13 @@ set laststatus=2
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Easytags setup {{{
-" Set Easytags to save to .tags in the local folder
-set tags=./tags
-" Create the local tag file if not exist
-let g:easytags_dynamic_files=2
+" Set Easytags to save to tags per project basis
+set tags=./tags;
+" update the project tags, else update global tags
+let g:easytags_dynamic_files=1
 ""Run Easytags async
 let g:easytags_async=1
+let g:easytags_by_filetype= '~/.vim/tags/'
 autocmd FileType *.js,*.py,*.rb,*.php BufWritePost UpdateTags
 " }}}
 
