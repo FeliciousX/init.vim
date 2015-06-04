@@ -25,6 +25,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 Bundle 'xolox/vim-session'
 Bundle 'wakatime/vim-wakatime'
+Bundle 'vitalk/vim-simple-todo'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
