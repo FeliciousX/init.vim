@@ -27,6 +27,7 @@ Bundle 'xolox/vim-session'
 Bundle 'wakatime/vim-wakatime'
 Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
+Bundle 'vitalk/vim-simple-todo'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
