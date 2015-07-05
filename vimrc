@@ -28,6 +28,7 @@ Bundle 'wakatime/vim-wakatime'
 Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
 Bundle 'vitalk/vim-simple-todo'
+Bundle 'xsbeats/vim-blade.git'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -204,6 +205,8 @@ iabbrev ssig -- <cr>FeliciousX<cr>feliciousx@gmail.com
 
 " FileType-specific settings --- {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 
 augroup autoindent
     autocmd!
