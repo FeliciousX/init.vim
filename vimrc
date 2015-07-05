@@ -29,6 +29,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
 Bundle 'vitalk/vim-simple-todo'
 Bundle 'xsbeats/vim-blade.git'
+Bundle 'Valloric/MatchTagAlways'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
