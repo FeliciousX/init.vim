@@ -1,7 +1,7 @@
 " Vundle settings ----------------------------- {{{
 set nocompatible              " be iMproved, required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle, required
@@ -32,6 +32,7 @@ Bundle 'Valloric/MatchTagAlways'
 Bundle 'zeis/vim-kolor'
 Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'morhetz/gruvbox'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -60,19 +61,7 @@ filetype plugin indent on     " required
 " }}}
 
 " Color Scheme settings --- {{{
-"  option name default optional
-"  g:solarized_termcolors= 16 | 256
-"  g:solarized_termtrans = 0 | 1
-"  g:solarized_degrade = 0 | 1
-"  g:solarized_bold = 1 | 0
-"  g:solarized_underline = 1 | 0
-"  g:solarized_italic = 1 | 0
-"  g:solarized_contrast = “normal”| “high” or “low”
-"  g:solarized_visibility= “normal”| “high” or “low”
-
-"let g:solarized_termtrans = 1
 syntax enable
-"set background=dark
 colorscheme kolor
 
 " }}}
