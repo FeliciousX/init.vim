@@ -13,9 +13,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
-Bundle 'zeis/vim-kolor'
-Bundle 'tomasr/molokai'
-Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
@@ -27,9 +24,14 @@ Bundle 'xolox/vim-session'
 Bundle 'wakatime/vim-wakatime'
 Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
-Bundle 'vitalk/vim-simple-todo'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'Valloric/MatchTagAlways'
+" }}}
+
+" Colorschemes plugins --- {{{
+Bundle 'zeis/vim-kolor'
+Bundle 'tomasr/molokai'
+Bundle 'altercation/vim-colors-solarized.git'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -68,10 +70,10 @@ filetype plugin indent on     " required
 "  g:solarized_contrast = “normal”| “high” or “low”
 "  g:solarized_visibility= “normal”| “high” or “low”
 
-let g:solarized_termtrans = 1
+"let g:solarized_termtrans = 1
 syntax enable
-set background=dark
-colorscheme solarized
+"set background=dark
+colorscheme kolor
 
 " }}}
 
@@ -196,7 +198,7 @@ nnoremap / /\v
 nnoremap <leader>w /\v +$/<cr>
 
 " Turn off search highlight
-nnoremap <leader><space> :setlocal nohlsearch<cr>
+nnoremap <leader><space> :setlocal nohlsearch!<cr>
 " }}}
 
 " Abbreviations and typo correction --- {{{
