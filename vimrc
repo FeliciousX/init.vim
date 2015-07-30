@@ -63,6 +63,8 @@ filetype plugin indent on     " required
 " Color Scheme settings --- {{{
 syntax enable
 colorscheme kolor
+"set background=dark
+"colorscheme gruvbox
 
 " }}}
 
