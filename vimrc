@@ -221,7 +221,6 @@ command! JscsFix :call JscsFix()
 " }}}
 
 " FileType-specific settings --- {{{
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 
@@ -244,12 +243,14 @@ augroup END
 
 augroup filetype_javascript
     autocmd!
+    autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     "autocmd BufWritePre *.js JscsFix
 augroup END
 
 augroup filetype_markdown
     autocmd!
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " Change in headings
     autocmd FileType markdown onoremap <buffer> ih :<c-u>execute
                 \ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rkvg_"<cr>
