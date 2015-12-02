@@ -204,6 +204,20 @@ iabbrev @@ feliciousx@gmail.com
 iabbrev ssig -- <cr>FeliciousX<cr>feliciousx@gmail.com
 " }}}
 
+" Misc functions --- {{{
+function! JscsFix()
+    "Save current cursor position"
+    let l:winview = winsaveview()
+    "Pipe the current buffer (%) through the jscs -x command"
+    % ! jscs -x
+    "Restore cursor position - this is needed as piping the file"
+    "through jscs jumps the cursor to the top"
+    call winrestview(l:winview)
+    Errors
+endfunction
+command! JscsFix :call JscsFix()
+" }}}
+
 " FileType-specific settings --- {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -229,6 +243,7 @@ augroup END
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+    autocmd BufWritePre *.js JscsFix
 augroup END
 
 augroup filetype_markdown
