@@ -11,6 +11,8 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-repeat.git'
+Bundle 'tpope/vim-unimpaired.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -92,6 +94,7 @@ let localmapleader = "\\"
 " Setting up vim-airline powerline
 let g:airline_powerline_fonts = 1
 set laststatus=2
+set guifont=Hack
 
 " Sets NERDTree to open by default
 "autocmd StdinReadPre * let s:std_in=1
@@ -116,6 +119,10 @@ let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
 let g:session_autosave_periodic = 5
 " }}}
+" }}}
+
+" Syntastic Settings --- {{{
+let g:syntastic_javascript_checkers=['jscs']
 " }}}
 
 " Mappings --- {{{
@@ -217,13 +224,11 @@ augroup END
 augroup filetype_python
     autocmd!
     autocmd FileType python	nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType python :iabbrev <buffer> iff if:<left>
 augroup END
 
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType javascript :iabbrev <buffer> func function() {}<left><cr><up><esc>A
 augroup END
 
 augroup filetype_markdown
@@ -244,8 +249,7 @@ augroup END
 
 augroup filetype_php
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType php :iabbrev <buffer> fore foreach ()<left>
+    autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
 augroup END
 
 augroup filetype_lua
