@@ -28,6 +28,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'Valloric/MatchTagAlways'
+Bundle 'keith/rspec.vim'
 " }}}
 
 " Colorschemes plugins --- {{{
@@ -35,6 +36,7 @@ Bundle 'zeis/vim-kolor'
 Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'morhetz/gruvbox'
+Bundle 'ajh17/Spacegray.vim'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -64,8 +66,8 @@ filetype plugin indent on     " required
 
 " Color Scheme settings --- {{{
 syntax enable
-colorscheme kolor
-"set background=dark
+colorscheme spacegray
+set background=dark
 "colorscheme gruvbox
 
 " }}}
@@ -243,7 +245,7 @@ augroup END
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd BufWritePre *.js JscsFix
+    "autocmd BufWritePre *.js JscsFix
 augroup END
 
 augroup filetype_markdown
