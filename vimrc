@@ -29,6 +29,7 @@ Bundle 'KabbAmine/zeavim.vim'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'keith/rspec.vim'
+Bundle 'nikvdp/ejs-syntax'
 " }}}
 
 " Colorschemes plugins --- {{{
@@ -37,6 +38,7 @@ Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'morhetz/gruvbox'
 Bundle 'ajh17/Spacegray.vim'
+Bundle 'Lokaltog/vim-distinguished'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -89,6 +91,12 @@ set relativenumber
 set numberwidth=2
 
 set t_Co=256
+
+" Set Clipboard --- {{{
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
+" }}}
 
 let mapleader = ","
 let localmapleader = "\\"
