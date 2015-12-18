@@ -78,10 +78,10 @@ set background=dark
 set incsearch hlsearch
 set ignorecase smartcase
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set shiftround
-set softtabstop=4
+set softtabstop=2
 set expandtab
 
 set nowrap
@@ -231,6 +231,8 @@ command! JscsFix :call JscsFix()
 " FileType-specific settings --- {{{
 
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
+
+autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
 
 augroup autoindent
     autocmd!
