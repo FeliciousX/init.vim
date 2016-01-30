@@ -254,7 +254,7 @@ augroup END
 
 augroup filetype_javascript
     autocmd!
-    autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
+    autocmd BufNewFile,BufReadPost *.es6 setlocal filetype=javascript
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     "autocmd BufWritePre *.js JscsFix
     "autocmd BufWritePre *.es6 JscsFix
@@ -274,6 +274,9 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setlocal tabstop=4
+    autocmd FileType vim setlocal shiftwidth=4
+    autocmd FileType vim setlocal softtabstop=4
     autocmd FileType vim nnoremap <buffer> <leader>c I"<esc>
 augroup END
 
@@ -285,6 +288,13 @@ augroup END
 augroup filetype_lua
     autocmd!
     autocmd FileType lua setlocal foldmethod=marker
+augroup END
+
+augroup filetype_elm
+    autocmd!
+    autocmd FileType elm nnoremap <leader>em :ElmMakeCurrentFile<cr>
+    autocmd FileType elm nnoremap <leader>elv :ElmEvalLine<cr>
+    autocmd FileType elm vnoremap <leader>elv :ElmEvalLine<cr>
 augroup END
 
 " }}}
