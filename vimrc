@@ -30,6 +30,7 @@ Bundle 'xsbeats/vim-blade.git'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'keith/rspec.vim'
 Bundle 'nikvdp/ejs-syntax'
+Bundle 'lambdatoast/elm.vim'
 " }}}
 
 " Colorschemes plugins --- {{{
@@ -80,8 +81,8 @@ set ignorecase smartcase
 
 set tabstop=2
 set shiftwidth=2
-set shiftround
 set softtabstop=2
+set shiftround
 set expandtab
 
 set nowrap
@@ -256,6 +257,7 @@ augroup filetype_javascript
     autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     "autocmd BufWritePre *.js JscsFix
+    "autocmd BufWritePre *.es6 JscsFix
 augroup END
 
 augroup filetype_markdown
