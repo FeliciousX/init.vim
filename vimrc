@@ -5,46 +5,50 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Bundles available on github --- {{{
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat.git'
-Bundle 'tpope/vim-unimpaired.git'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'bling/vim-airline'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'rking/ag.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-Bundle 'xolox/vim-session'
-Bundle 'wakatime/vim-wakatime'
-Bundle 'KabbAmine/zeavim.vim'
-Bundle 'xsbeats/vim-blade.git'
-Bundle 'Valloric/MatchTagAlways'
-Bundle 'rust-lang/rust.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-unimpaired.git'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'bling/vim-airline'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'rking/ag.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-session'
+Plugin 'wakatime/vim-wakatime'
+Plugin 'KabbAmine/zeavim.vim'
+Plugin 'xsbeats/vim-blade.git'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'rust-lang/rust.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 " Rails stuff
-Bundle 'tpope/vim-rails.git'
-Bundle 'keith/rspec.vim'
+Plugin 'tpope/vim-rails.git'
+Plugin 'keith/rspec.vim'
 
 " Javascript stuff
-Bundle 'nikvdp/ejs-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ternjs/tern_for_vim'
+Plugin 'nikvdp/ejs-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ternjs/tern_for_vim'
 " }}}
 
 " Colorschemes plugins --- {{{
-Bundle 'zeis/vim-kolor'
-Bundle 'tomasr/molokai'
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'morhetz/gruvbox'
-Bundle 'ajh17/Spacegray.vim'
-Bundle 'Lokaltog/vim-distinguished'
+Plugin 'zeis/vim-kolor'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'morhetz/gruvbox'
+Plugin 'ajh17/Spacegray.vim'
+Plugin 'Lokaltog/vim-distinguished'
 " }}}
 
 " Plugins from vimawesome.com --- {{{
@@ -54,8 +58,8 @@ Plugin 'renamer.vim'
 " }}}
 
 " Bundles on http://vim-scripts.org/vim/scripts.html --- {{{
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
 " }}}
 
 filetype plugin indent on     " required
