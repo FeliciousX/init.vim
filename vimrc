@@ -10,7 +10,6 @@ Bundle 'gmarik/vundle'
 " Bundles available on github --- {{{
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-unimpaired.git'
 Bundle 'Lokaltog/vim-easymotion'
@@ -24,13 +23,19 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 Bundle 'xolox/vim-session'
 Bundle 'wakatime/vim-wakatime'
-Bundle 'rust-lang/rust.vim'
 Bundle 'KabbAmine/zeavim.vim'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'Valloric/MatchTagAlways'
+Bundle 'rust-lang/rust.vim'
+
+" Rails stuff
+Bundle 'tpope/vim-rails.git'
 Bundle 'keith/rspec.vim'
+
+" Javascript stuff
 Bundle 'nikvdp/ejs-syntax'
-Bundle 'lambdatoast/elm.vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'ternjs/tern_for_vim'
 " }}}
 
 " Colorschemes plugins --- {{{
@@ -99,8 +104,8 @@ if has('unnamedplus')
 endif
 " }}}
 
-let mapleader = ","
-let localmapleader = "\\"
+let mapleader = "\\"
+let localmapleader = ","
 
 " Setting up vim-airline powerline
 let g:airline_powerline_fonts = 1
@@ -130,6 +135,11 @@ let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
 let g:session_autosave_periodic = 5
 " }}}
+" }}}
+
+" Tern Settings --- {{{
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
 " }}}
 
 " Syntastic Settings --- {{{
