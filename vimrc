@@ -256,9 +256,20 @@ augroup autoindent
     autocmd BufRead *.java :normal gg=G
 augroup END
 
+augroup filetype_eruby
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+    autocmd FileType vim setlocal tabstop=4
+    autocmd FileType vim setlocal shiftwidth=4
+    autocmd FileType vim setlocal softtabstop=4
+augroup END
+
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+    autocmd FileType vim setlocal tabstop=4
+    autocmd FileType vim setlocal shiftwidth=4
+    autocmd FileType vim setlocal softtabstop=4
 augroup END
 
 augroup filetype_python
