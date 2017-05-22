@@ -43,8 +43,8 @@ call vundle#end()
 
 " Color Scheme settings --- {{{
 syntax enable
-colorscheme spacegray
 set background=dark
+color gruvbox
 
 " }}}
 
