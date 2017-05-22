@@ -17,7 +17,7 @@ Plugin 'rking/ag.vim' " the_silver_searcher support
 Plugin 'tpope/vim-fugitive' " Git helper
 Plugin 'sheerun/vim-polyglot' " Syntax for many file-types
 Plugin 'cloudhead/neovim-fuzzy' " fuzzy search
-
+Plugin 'jiangmiao/auto-pairs' " Auto closing brackets
 
 " Colorschemes plugins --- {{{
 Plugin 'altercation/vim-colors-solarized.git'
@@ -68,6 +68,10 @@ set t_Co=256
 
 let mapleader = "\\"
 let localmapleader = ","
+
+" Auto Pair settings --- {{{
+let g:AutoPairsMapCR = 0
+" }}}
 
 " Setting up vim-airline powerline
 let g:airline_powerline_fonts = 1
