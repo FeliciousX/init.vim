@@ -10,6 +10,7 @@ Plugin 'gmarik/vundle'
 Plugin 'L9'
 Plugin 'w0rp/ale' " linter
 Plugin 'scrooloose/nerdtree' " NERD Tree file browser
+Plugin 'Xuyuanp/nerdtree-git-plugin' " NERD Tree git status
 Plugin 'bling/vim-airline' " Status bar
 Plugin 'tpope/vim-surround' " Vim bracket/parantheses wrapping
 Plugin 'rking/ag.vim' " the_silver_searcher support
