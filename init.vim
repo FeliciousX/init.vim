@@ -49,6 +49,7 @@ color gruvbox
 " }}}
 
 " Basic settings --- {{{
+set clipboard+=unnamedplus
 set incsearch hlsearch
 set ignorecase smartcase
 
@@ -162,19 +163,19 @@ nnoremap <leader><space> :setlocal nohlsearch!<cr>
 " Remaps & shortcuts
 :nnoremap <C-p> :FuzzyOpen<CR>
 " Ctrl + S to search
-:nnoremap <C-s> :Ag <Space>
+:nnoremap <C-s> :Ag<Space>
 " Ctrl + T to open a new tab
-:nnoremap <C-t> :tabnew <Enter>
+:nnoremap <C-t> :tabnew<CR>
 " Ctrl + ] to switch to next tab
 :nnoremap <C-]> :tabnext<CR>
 " Ctrl + [ to switch to previous tab
 :nnoremap <C-[> :tabprevious<CR>
 " Ctrl + E to open file-search pane
-:nnoremap <C-e> :NERDTree <Enter>
+:nnoremap <C-e> :NERDTree<CR>
 " Ctrl + Z to undo
-:nnoremap <C-z> :undo <Enter>
+:nnoremap <C-z> :undo<CR>
 " Ctrl + Y to redo
-:nnoremap <C-y> :redo <Enter>
+:nnoremap <C-y> :redo<CR>
 " Ctrl + Left to split left
 :nnoremap <C-Left> <C-W>h
 " Ctrl + Down to split below
