@@ -8,7 +8,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 Plugin 'L9'
-Plugin 'scrooloose/syntastic' " Vim syntax checking
+Plugin 'w0rp/ale' " linter
 Plugin 'scrooloose/nerdtree' " NERD Tree file browser
 Plugin 'bling/vim-airline' " Status bar
 Plugin 'tpope/vim-surround' " Vim bracket/parantheses wrapping
@@ -27,7 +27,6 @@ Plugin 'ajh17/Spacegray.vim'
 call vundle#end()
 " }}}
 
-filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -81,8 +80,10 @@ set guifont=Hack
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Syntastic Settings --- {{{
-let g:syntastic_javascript_checkers=['eslint']
+" Ale lint settings --- {{{
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_sign_column_always = 1
+let g:ale_linters = {'javascript': ['eslint']}
 " }}}
 
 " Mappings --- {{{
