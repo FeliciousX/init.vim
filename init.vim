@@ -160,6 +160,10 @@ nnoremap <leader>w /\v +$/<cr>
 nnoremap <leader><space> :setlocal nohlsearch!<cr>
 " }}}
 
+" Move between lint problems
+nmap <silent> <C-k> <Plug>(ale_previous)
+nmap <silent> <C-j> <Plug>(ale_next)
+
 " Remaps & shortcuts
 :nnoremap <C-p> :FuzzyOpen<CR>
 " Ctrl + S to search
