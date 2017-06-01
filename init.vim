@@ -96,6 +96,7 @@ let g:ale_linters = {'javascript': ['eslint']}
 
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-e> :NERDTreeFind<CR>
 
 " Exit from insert mode
 inoremap jk <esc>
@@ -174,8 +175,6 @@ nmap <silent> <C-j> <Plug>(ale_next)
 :nnoremap <C-]> :tabnext<CR>
 " Ctrl + [ to switch to previous tab
 :nnoremap <C-[> :tabprevious<CR>
-" Ctrl + E to open file-search pane
-:nnoremap <C-e> :NERDTree<CR>
 " Ctrl + Z to undo
 :nnoremap <C-z> :undo<CR>
 " Ctrl + Y to redo
