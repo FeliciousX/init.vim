@@ -139,6 +139,11 @@ let g:tern_show_argument_hints='on_hold'
 
 " Mappings --- {{{
 
+" Fuzzy Finder with fzy --- {{{
+nnoremap <c-p> :FuzzyOpen<CR>
+nnoremap <c-s> :FuzzyGrep<CR>
+" }}}
+
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <C-e> :NERDTreeFind<CR>
@@ -149,12 +154,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Exit from insert mode
 inoremap jk <esc>
-
-" Getting rid of arrow keys
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 
 " Allow moving up and down even when word is wrapped
 nnoremap j gj
@@ -214,11 +213,9 @@ nnoremap <leader>w /\v +$/<cr>
 
 " Turn off search highlight
 nnoremap <leader><space> :setlocal nohlsearch!<cr>
-" }}}
 
-" Fuzzy Finder with fzy --- {{{
-nnoremap <c-p> :FuzzyOpen<CR>
-nnoremap <c-s> :FuzzyGrep<CR>
+" new tab
+nnoremap <C-t> :tabe<cr>
 " }}}
 
 " FileType-specific settings --- {{{
