@@ -25,6 +25,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'cloudhead/neovim-fuzzy'
+Plugin 'w0rp/ale'
 
 " Syntax support
 Plugin 'rust-lang/rust.vim'
@@ -119,6 +120,11 @@ set guifont=Hack
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" ALE Config
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
 " vim-session settings {{{
 let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
@@ -136,6 +142,10 @@ let g:tern_show_argument_hints='on_hold'
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <C-e> :NERDTreeFind<CR>
+
+" ALE Mapping
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Exit from insert mode
 inoremap jk <esc>
