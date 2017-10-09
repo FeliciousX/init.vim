@@ -80,6 +80,7 @@ set background=dark
 " }}}
 
 " Basic settings --- {{{
+set mouse=a
 set incsearch hlsearch
 set ignorecase smartcase
 
