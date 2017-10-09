@@ -34,10 +34,6 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'nikvdp/ejs-syntax'
 Plugin 'keith/rspec.vim'
 
-" Javascript stuff
-Plugin 'ternjs/tern_for_vim'
-" }}}
-
 " Colorschemes plugins --- {{{
 Plugin 'zeis/vim-kolor'
 Plugin 'tomasr/molokai'
@@ -74,9 +70,9 @@ filetype plugin indent on     " required
 
 " Color Scheme settings --- {{{
 syntax enable
-colorscheme solarized
+color solarized
 set background=dark
-"colorscheme gruvbox
+"color gruvbox
 
 " }}}
 
@@ -132,16 +128,11 @@ let g:session_autosave_periodic = 5
 " }}}
 " }}}
 
-" Tern Settings --- {{{
-let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
-" }}}
-
 " Mappings --- {{{
 
 " Fuzzy Finder with fzy --- {{{
-nnoremap <c-p> :FuzzyOpen<CR>
-nnoremap <c-s> :FuzzyGrep<CR>
+nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <C-s> :FuzzyGrep<CR>
 " }}}
 
 " Toggles NERDTree
@@ -199,12 +190,6 @@ onoremap al[ :<c-u>normal! F]%bvg_<cr>
 " Autocomplete curly bracket
 inoremap {<cr> {<cr>}<Esc>O
 
-" Change in next email
-onoremap in@ :<c-u>execute "normal! /[a-zA-Z.-]\\+@\\w\\+\\.\\w\\+\rv/@\rh"<cr>
-
-" Opens previous buffer in a vertical split on the right
-nnoremap <leader>op :execute "rightbelow vsplit " . bufname("#")<cr>
-
 " Default search to use 'very magic'
 nnoremap / /\v
 
@@ -219,82 +204,12 @@ nnoremap <C-t> :tabe<cr>
 " }}}
 
 " FileType-specific settings --- {{{
-
-autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
-
-autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
-
-augroup autoindent
-    autocmd!
-    autocmd BufRead *.cpp :normal gg=G
-    autocmd BufRead *.c :normal gg=G
-    autocmd BufRead *.java :normal gg=G
-augroup END
-
-augroup filetype_eruby
-    autocmd!
-    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
-    autocmd FileType vim setlocal tabstop=4
-    autocmd FileType vim setlocal shiftwidth=4
-    autocmd FileType vim setlocal softtabstop=4
-augroup END
-
-augroup filetype_html
-    autocmd!
-    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
-    autocmd FileType vim setlocal tabstop=4
-    autocmd FileType vim setlocal shiftwidth=4
-    autocmd FileType vim setlocal softtabstop=4
-augroup END
-
-augroup filetype_python
-    autocmd!
-    autocmd FileType python	nnoremap <buffer> <localleader>c I#<esc>
-augroup END
-
-augroup filetype_javascript
-    autocmd!
-    autocmd BufNewFile,BufReadPost *.es6 setlocal filetype=javascript
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    "autocmd BufWritePre *.js JscsFix
-    "autocmd BufWritePre *.es6 JscsFix
-augroup END
-
-augroup filetype_markdown
-    autocmd!
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    " Change in headings
-    autocmd FileType markdown onoremap <buffer> ih :<c-u>execute
-                \ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rkvg_"<cr>
-    " Change around headings
-    autocmd FileType markdown onoremap <buffer> ah :<c-u>execute
-                \ "normal! ".'?\v^[=][=]+\|^--+$'."\r:nohlsearch\rg_vk0"<cr>
-augroup END
-
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vim setlocal tabstop=4
     autocmd FileType vim setlocal shiftwidth=4
     autocmd FileType vim setlocal softtabstop=4
-    autocmd FileType vim nnoremap <buffer> <leader>c I"<esc>
-augroup END
-
-augroup filetype_php
-    autocmd!
-    autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
-augroup END
-
-augroup filetype_lua
-    autocmd!
-    autocmd FileType lua setlocal foldmethod=marker
-augroup END
-
-augroup filetype_elm
-    autocmd!
-    autocmd FileType elm nnoremap <leader>em :ElmMakeCurrentFile<cr>
-    autocmd FileType elm nnoremap <leader>elv :ElmEvalLine<cr>
-    autocmd FileType elm vnoremap <leader>elv :ElmEvalLine<cr>
 augroup END
 
 " }}}
