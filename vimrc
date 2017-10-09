@@ -16,7 +16,6 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'bling/vim-airline'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -129,10 +128,6 @@ let g:session_autosave_periodic = 5
 " Tern Settings --- {{{
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
-" }}}
-
-" Syntastic Settings --- {{{
-let g:syntastic_javascript_checkers=['jscs']
 " }}}
 
 " Mappings --- {{{
