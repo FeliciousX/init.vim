@@ -12,33 +12,29 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-unimpaired.git'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'bling/vim-airline'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-session'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'KabbAmine/zeavim.vim'
-Plugin 'xsbeats/vim-blade.git'
 Plugin 'Valloric/MatchTagAlways'
-Plugin 'rust-lang/rust.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'cloudhead/neovim-fuzzy'
 
-" Rails stuff
-Plugin 'tpope/vim-rails.git'
+" Syntax support
+Plugin 'rust-lang/rust.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'nikvdp/ejs-syntax'
 Plugin 'keith/rspec.vim'
 
 " Javascript stuff
-Plugin 'nikvdp/ejs-syntax'
-Plugin 'pangloss/vim-javascript'
 Plugin 'ternjs/tern_for_vim'
 " }}}
 
@@ -78,7 +74,7 @@ filetype plugin indent on     " required
 
 " Color Scheme settings --- {{{
 syntax enable
-colorscheme spacegray
+colorscheme solarized
 set background=dark
 "colorscheme gruvbox
 
@@ -123,17 +119,6 @@ set guifont=Hack
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Easytags setup {{{
-" Set Easytags to save to tags per project basis
-set tags=./tags;
-" update the project tags, else update global tags
-let g:easytags_dynamic_files=1
-""Run Easytags async
-let g:easytags_async=1
-let g:easytags_by_filetype= '~/.vim/tags/'
-autocmd FileType *.js,*.py,*.rb,*.php BufWritePost UpdateTags
-" }}}
-
 " vim-session settings {{{
 let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
@@ -154,6 +139,7 @@ let g:syntastic_javascript_checkers=['jscs']
 
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-e> :NERDTreeFind<CR>
 
 " Exit from insert mode
 inoremap jk <esc>
@@ -223,6 +209,10 @@ nnoremap <leader>w /\v +$/<cr>
 " Turn off search highlight
 nnoremap <leader><space> :setlocal nohlsearch!<cr>
 " }}}
+
+" Fuzzy Finder with fzy
+nnoremap <c-p> :FuzzyOpen<CR>
+nnoremap <c-s> :FuzzyGrep<CR>
 
 " Abbreviations and typo correction --- {{{
 iabbrev @@ feliciousx@gmail.com
