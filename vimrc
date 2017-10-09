@@ -216,27 +216,9 @@ nnoremap <leader>w /\v +$/<cr>
 nnoremap <leader><space> :setlocal nohlsearch!<cr>
 " }}}
 
-" Fuzzy Finder with fzy
+" Fuzzy Finder with fzy --- {{{
 nnoremap <c-p> :FuzzyOpen<CR>
 nnoremap <c-s> :FuzzyGrep<CR>
-
-" Abbreviations and typo correction --- {{{
-iabbrev @@ feliciousx@gmail.com
-iabbrev ssig -- <cr>FeliciousX<cr>feliciousx@gmail.com
-" }}}
-
-" Misc functions --- {{{
-function! JscsFix()
-    "Save current cursor position"
-    let l:winview = winsaveview()
-    "Pipe the current buffer (%) through the jscs -x command"
-    % ! jscs -x
-    "Restore cursor position - this is needed as piping the file"
-    "through jscs jumps the cursor to the top"
-    call winrestview(l:winview)
-    Errors
-endfunction
-command! JscsFix :call JscsFix()
 " }}}
 
 " FileType-specific settings --- {{{
