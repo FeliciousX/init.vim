@@ -47,16 +47,16 @@ if dein#load_state(dein_path)
   call dein#add('carlitux/deoplete-ternjs')       " JS autocomplete
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('jelera/vim-javascript-syntax')
-  call dein#add('vim-python/python-syntax')
   call dein#add('luochen1990/rainbow')
 
   " Syntax support
-  call dein#add('rust-lang/rust.vim')
+  "call dein#add('rust-lang/rust.vim')
+  "call dein#add('jelera/vim-javascript-syntax')
+  "call dein#add('vim-python/python-syntax')
   call dein#add('pangloss/vim-javascript')
   call dein#add('maxmellon/vim-jsx-pretty')
-  call dein#add('nikvdp/ejs-syntax')
-  call dein#add('keith/rspec.vim')
+  "call dein#add('nikvdp/ejs-syntax')
+  "call dein#add('keith/rspec.vim')
 
   " Required:
   call dein#end()
@@ -103,6 +103,10 @@ if has('unnamedplus')
 endif
 " }}}
 
+" Set rainbow --- {{{
+let g:rainbow_active = 1
+" }
+
 let mapleader = "\\"
 let localmapleader = ","
 
@@ -111,12 +115,15 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 set guifont=Hack
 
-let g:polyglot_disabled = ['javascript', 'javascript.jsx', 'python']  " vim-javascript sucks and conflicts with rainbow
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javascript.jsx' : 1 }
 let g:jsx_ext_required = 0
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = 0
-let g:tern#filetypes = [ 'javascript.jsx', 'jsx' ]
+"
+" Tern configuration
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#filetypes = ['javascript','javascript.jsx','jsx']
 
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
