@@ -1,55 +1,87 @@
 " File: `~/.config/nvim/init.vim`
+filetype off
 
-" Run `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` and :PluginInstall
-set rtp+=~/.vim/bundle/Vundle.vim
-
-" SECTION Vundle --- {{{
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
-Plugin 'L9'
-Plugin 'w0rp/ale' " linter
-Plugin 'scrooloose/nerdtree' " NERD Tree file browser
-Plugin 'Xuyuanp/nerdtree-git-plugin' " NERD Tree git status
-Plugin 'bling/vim-airline' " Status bar
-Plugin 'tpope/vim-surround' " Vim bracket/parantheses wrapping
-Plugin 'rking/ag.vim' " the_silver_searcher support
-Plugin 'tpope/vim-fugitive' " Git helper
-Plugin 'sheerun/vim-polyglot' " Syntax for many file-types
-Plugin 'cloudhead/neovim-fuzzy' " fuzzy search
-Plugin 'jiangmiao/auto-pairs' " Auto closing brackets
-
-" Colorschemes plugins --- {{{
-Plugin 'altercation/vim-colors-solarized.git'
-Plugin 'morhetz/gruvbox'
-Plugin 'ajh17/Spacegray.vim'
-" }}}
-
-call vundle#end()
-" }}}
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Required for Python on MacOS
 "
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+" brew install python
+" brew install python3
+" pip2 install neovim --upgrade
+" pip3 install neovim --upgrade
 "
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
+" brew install neovim
+
+" SECTION DEIN --- {{{
+" https://github.com/Shougo/dein.vim
+" Installed to ~/.config/nvim/bundle
+
+if &compatible
+  set nocompatible " Be iMproved
+endif
+
+let dein_path = $HOME . '/.config/nvim'
+set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state(dein_path)
+  call dein#begin(dein_path)
+
+  " Let dein manage dein
+  " Required:
+  call dein#add(dein_path)
+
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('scrooloose/nerdtree')            " NERD Tree file browser
+  call dein#add('Xuyuanp/nerdtree-git-plugin')    " Git support in NERD Tree
+  call dein#add('vim-airline/vim-airline')        " Status bar
+  call dein#add('vim-airline/vim-airline-themes') " Status bar themes
+  call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
+  call dein#add('morhetz/gruvbox')                " gruvbox theme
+  call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
+  call dein#add('numkil/ag.nvim')                 " the_silver_searcher
+  call dein#add('tpope/vim-fugitive')             " Git stuff
+  call dein#add('airblade/vim-gitgutter')         " Git annotations
+  call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
+  call dein#add('Shougo/deoplete.nvim')           " Autocomplete
+  call dein#add('carlitux/deoplete-ternjs')       " JS autocomplete
+  call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('luochen1990/rainbow')
+
+  " Syntax support
+  "call dein#add('rust-lang/rust.vim')
+  "call dein#add('jelera/vim-javascript-syntax')
+  "call dein#add('vim-python/python-syntax')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('maxmellon/vim-jsx-pretty')
+  "call dein#add('nikvdp/ejs-syntax')
+  "call dein#add('keith/rspec.vim')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Automatically install new plugins
+if dein#check_install()
+  call dein#install()
+endif
+
 " }}}
+
+" Required:
+filetype plugin indent on
+syntax enable
 
 " Color Scheme settings --- {{{
-syntax enable
-set background=dark
 color gruvbox
+set background=dark
 
 " }}}
 
 " Basic settings --- {{{
-set clipboard+=unnamedplus
+set mouse=a
 set incsearch hlsearch
 set ignorecase smartcase
 
@@ -65,47 +97,62 @@ set number
 set relativenumber
 set numberwidth=2
 
-set t_Co=256
+" Set Clipboard --- {{{
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
+" }}}
+
+" Set rainbow --- {{{
+let g:rainbow_active = 1
+" }
 
 let mapleader = "\\"
 let localmapleader = ","
-
-" Auto Pair settings --- {{{
-let g:AutoPairsMapCR = 0
-" }}}
 
 " Setting up vim-airline powerline
 let g:airline_powerline_fonts = 1
 set laststatus=2
 set guifont=Hack
 
-" Sets NERDTree to open by default
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javascript.jsx' : 1 }
+let g:jsx_ext_required = 0
+"
+" Tern configuration
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#filetypes = ['javascript','javascript.jsx','jsx']
 
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Ale lint settings --- {{{
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_sign_column_always = 1
+" ALE Config --- {{{
 let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_completion_enabled = 1 " Type all the damn scripts
+" }}}
+
 " }}}
 
 " Mappings --- {{{
+
+" Fuzzy Finder with fzy --- {{{
+nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <C-s> :FuzzyGrep<CR>
+" }}}
 
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <C-e> :NERDTreeFind<CR>
 
+" ALE Mapping
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " Exit from insert mode
 inoremap jk <esc>
-
-" Getting rid of arrow keys
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 
 " Allow moving up and down even when word is wrapped
 nnoremap j gj
@@ -148,8 +195,8 @@ onoremap il[ :<c-u>normal! F]vi[<cr>
 onoremap an[ :<c-u>normal! f[bvg_<cr>
 onoremap al[ :<c-u>normal! F]%bvg_<cr>
 
-" Opens previous buffer in a vertical split on the right
-nnoremap <leader>op :execute "rightbelow vsplit " . bufname("#")<cr>
+" Autocomplete curly bracket
+inoremap {<cr> {<cr>}<Esc>O
 
 " Default search to use 'very magic'
 nnoremap / /\v
@@ -159,34 +206,19 @@ nnoremap <leader>w /\v +$/<cr>
 
 " Turn off search highlight
 nnoremap <leader><space> :setlocal nohlsearch!<cr>
+
+" new tab
+nnoremap <C-t> :tabe<cr>
 " }}}
 
-" Move between lint problems
-nmap <silent> <C-k> <Plug>(ale_previous)
-nmap <silent> <C-j> <Plug>(ale_next)
+function JavascriptOptions()
+  setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  call deoplete#enable()
+endfunction
 
-" Remaps & shortcuts
-:nnoremap <C-p> :FuzzyOpen<CR>
-" Ctrl + S to search
-:nnoremap <C-s> :Ag<Space>
-" Ctrl + T to open a new tab
-:nnoremap <C-t> :tabnew<CR>
-" Ctrl + ] to switch to next tab
-:nnoremap <C-]> :tabnext<CR>
-" Ctrl + [ to switch to previous tab
-:nnoremap <C-[> :tabprevious<CR>
-" Ctrl + Z to undo
-:nnoremap <C-z> :undo<CR>
-" Ctrl + Y to redo
-:nnoremap <C-y> :redo<CR>
-" Ctrl + Left to split left
-:nnoremap <C-Left> <C-W>h
-" Ctrl + Down to split below
-:nnoremap <C-Down> <C-W>j
-" Ctrl + Up to split above
-:nnoremap <C-Up> <C-W>k
-" Ctrl + Right to split right
-:nnoremap <C-Right> <C-W>l
-" Ctrl + Alt + T to open terminal
-:nnoremap <C-A-t> :terminal <Enter>
+autocmd FileType javascript call JavascriptOptions()
+autocmd FileType javascript.jsx call JavascriptOptions()
+autocmd FileType typescript call JavascriptOptions()
+
+set autoread " trigger filetype checking
 
