@@ -1,3 +1,3 @@
-Using vundle.
+Using Dein
 
-[Full details here](https://github.com/gmarik/Vundle.vim)
+[Full details here](https://github.com/Shougo/dein.vim)
