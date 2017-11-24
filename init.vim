@@ -39,7 +39,6 @@ if dein#load_state(dein_path)
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
   call dein#add('morhetz/gruvbox')                " gruvbox theme
   call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
-  call dein#add('numkil/ag.nvim')                 " the_silver_searcher
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
