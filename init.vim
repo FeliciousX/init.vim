@@ -42,8 +42,7 @@ if dein#load_state(dein_path)
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
-  call dein#add('Shougo/deoplete.nvim')           " Autocomplete
-  call dein#add('carlitux/deoplete-ternjs')       " JS autocomplete
+  call dein#add('maralla/completor.vim')          " Auto complete
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
   call dein#add('sheerun/vim-polyglot')
   call dein#add('luochen1990/rainbow')
@@ -102,6 +101,10 @@ if has('unnamedplus')
 endif
 " }}}
 
+" Set autocomplete --- {{{
+let g:completor_node_binary = '~/.nvm/versions/node/v8.9.1/bin/node'
+" }}}
+
 " Set rainbow --- {{{
 let g:rainbow_active = 1
 " }
@@ -117,13 +120,6 @@ set guifont=Hack
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javascript.jsx' : 1 }
 let g:jsx_ext_required = 0
 "
-" Tern configuration
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#depths = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-let g:deoplete#sources#ternjs#filetypes = ['javascript','javascript.jsx','jsx']
-
 " Set Ack to use Silver Searcher (Ag)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -136,6 +132,12 @@ let g:ale_completion_enabled = 1 " Type all the damn scripts
 " }}}
 
 " Mappings --- {{{
+
+" autocomplete mapping --- {{{
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" }}}
 
 " Fuzzy Finder with fzy --- {{{
 nnoremap <C-p> :FuzzyOpen<CR>
@@ -210,14 +212,4 @@ nnoremap <leader><space> :setlocal nohlsearch!<cr>
 nnoremap <C-t> :tabe<cr>
 " }}}
 
-function JavascriptOptions()
-  setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  call deoplete#enable()
-endfunction
-
-autocmd FileType javascript call JavascriptOptions()
-autocmd FileType javascript.jsx call JavascriptOptions()
-autocmd FileType typescript call JavascriptOptions()
-
 set autoread " trigger filetype checking
-
