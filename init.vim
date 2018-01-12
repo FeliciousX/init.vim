@@ -39,6 +39,7 @@ if dein#load_state(dein_path)
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
   call dein#add('morhetz/gruvbox')                " gruvbox theme
   call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
+  call dein#add('jremmen/vim-ripgrep')            " search with :Rg
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
@@ -97,7 +98,7 @@ set numberwidth=2
 
 " Set Clipboard --- {{{
 if has('unnamedplus')
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 endif
 " }}}
 
@@ -119,9 +120,6 @@ set guifont=Hack
 
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javascript.jsx' : 1 }
 let g:jsx_ext_required = 0
-"
-" Set Ack to use Silver Searcher (Ag)
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " ALE Config --- {{{
 let g:ale_linters = {'javascript': ['eslint']}
@@ -141,8 +139,13 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 " Fuzzy Finder with fzy --- {{{
 nnoremap <C-p> :FuzzyOpen<CR>
-nnoremap <C-s> :FuzzyGrep<CR>
+" TODO: find another replacement for FuzzyGrep binding
+" nnoremap <C-s> :FuzzyGrep<CR>
 " }}}
+
+" Ripgrep search --- {{{
+nnoremap <C-s> :Rg<space>
+" }
 
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
