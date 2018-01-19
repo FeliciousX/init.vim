@@ -37,7 +37,6 @@ if dein#load_state(dein_path)
   call dein#add('vim-airline/vim-airline')        " Status bar
   call dein#add('vim-airline/vim-airline-themes') " Status bar themes
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
-  call dein#add('morhetz/gruvbox')                " gruvbox theme
   call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
   call dein#add('jremmen/vim-ripgrep')            " search with :Rg
   call dein#add('tpope/vim-fugitive')             " Git stuff
@@ -57,6 +56,10 @@ if dein#load_state(dein_path)
   "call dein#add('nikvdp/ejs-syntax')
   "call dein#add('keith/rspec.vim')
 
+  " colorschemes
+  call dein#add('arcticicestudio/nord-vim')
+  call dein#add('morhetz/gruvbox')                " gruvbox theme
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -74,7 +77,8 @@ filetype plugin indent on
 syntax enable
 
 " Color Scheme settings --- {{{
-color gruvbox
+"color gruvbox
+color nord
 set background=dark
 
 " }}}
