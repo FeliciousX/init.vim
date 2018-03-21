@@ -47,6 +47,9 @@ if dein#load_state(dein_path)
   call dein#add('sheerun/vim-polyglot')
   call dein#add('luochen1990/rainbow')
 
+  call dein#add('alx741/vim-hindent')
+  call dein#add('parsonsmatt/intero-neovim')
+
   " Syntax support
   "call dein#add('rust-lang/rust.vim')
   "call dein#add('jelera/vim-javascript-syntax')
@@ -107,6 +110,49 @@ if has('unnamedplus')
 endif
 " }}}
 
+augroup interoMaps
+  au!
+  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
+
+  " Background process and window management
+  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
+  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
+
+  " Open intero/GHCi split horizontally
+  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
+  " Open intero/GHCi split vertically
+  "au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
+  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+
+  " Reloading (pick one)
+  " Automatically reload on save
+  au BufWritePost *.hs InteroReload
+  " Manually save and reload
+  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
+
+  " Load individual modules
+  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+
+  " Type-related information
+  " Heads up! These next two differ from the rest.
+  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
+  au FileType haskell map <silent> <leader>T <Plug>InteroType
+  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
+
+  " Navigation
+  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+
+  " Managing targets
+  " Prompts you to enter targets (no silent):
+  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
+augroup END
+
+" Prefer starting Intero manually (faster startup times)
+let g:intero_start_immediately = 0
+" Use ALE (works even when not using Intero)
+let g:intero_use_neomake = 0
+
 " Set autocomplete --- {{{
 let g:completor_node_binary = '~/.nvm/versions/node/v8.9.1/bin/node'
 " }}}
@@ -127,9 +173,19 @@ let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javasc
 let g:jsx_ext_required = 0
 
 " ALE Config --- {{{
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_linters = {
+  \ 'javascript': ['esjint'],
+  \ 'typescript': ['tslint', 'tsserver'],
+  \ 'haskell': ['stack-ghc-mod', 'hlint', 'hfmt']
+  \ }
+
+let g:ale_fixers = {
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint']
+  \ }
+
 let g:ale_completion_enabled = 1 " Type all the damn scripts
+
 " }}}
 
 " Nord config
