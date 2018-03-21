@@ -32,6 +32,9 @@ if dein#load_state(dein_path)
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
   call dein#add('scrooloose/nerdtree')            " NERD Tree file browser
   call dein#add('Xuyuanp/nerdtree-git-plugin')    " Git support in NERD Tree
   call dein#add('vim-airline/vim-airline')        " Status bar
@@ -51,13 +54,8 @@ if dein#load_state(dein_path)
   call dein#add('parsonsmatt/intero-neovim')
 
   " Syntax support
-  "call dein#add('rust-lang/rust.vim')
-  "call dein#add('jelera/vim-javascript-syntax')
-  "call dein#add('vim-python/python-syntax')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mhartington/nvim-typescript')    " typescript stuff
-  "call dein#add('nikvdp/ejs-syntax')
-  "call dein#add('keith/rspec.vim')
 
   " colorschemes
   call dein#add('arcticicestudio/nord-vim')
@@ -109,6 +107,9 @@ if has('unnamedplus')
   set clipboard=unnamedplus
 endif
 " }}}
+
+" deoplete settings
+let g:deoplete#enable_at_startup = 1
 
 augroup interoMaps
   au!
