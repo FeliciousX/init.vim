@@ -55,7 +55,7 @@ if dein#load_state(dein_path)
   "call dein#add('jelera/vim-javascript-syntax')
   "call dein#add('vim-python/python-syntax')
   call dein#add('pangloss/vim-javascript')
-  call dein#add('maxmellon/vim-jsx-pretty')
+  call dein#add('mhartington/nvim-typescript')    " typescript stuff
   "call dein#add('nikvdp/ejs-syntax')
   "call dein#add('keith/rspec.vim')
 
@@ -174,7 +174,7 @@ let g:jsx_ext_required = 0
 
 " ALE Config --- {{{
 let g:ale_linters = {
-  \ 'javascript': ['esjint'],
+  \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint', 'tsserver'],
   \ 'haskell': ['stack-ghc-mod', 'hlint', 'hfmt']
   \ }
