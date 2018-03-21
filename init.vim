@@ -131,6 +131,9 @@ let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_completion_enabled = 1 " Type all the damn scripts
 " }}}
 
+" Nord config
+let g:nord_comment_brightness = 20
+
 " }}}
 
 " Mappings --- {{{
