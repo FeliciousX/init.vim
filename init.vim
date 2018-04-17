@@ -33,8 +33,6 @@ if dein#load_state(dein_path)
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('roxma/vim-hug-neovim-rpc')
   call dein#add('scrooloose/nerdtree')            " NERD Tree file browser
   call dein#add('Xuyuanp/nerdtree-git-plugin')    " Git support in NERD Tree
   call dein#add('vim-airline/vim-airline')        " Status bar
@@ -58,7 +56,6 @@ if dein#load_state(dein_path)
   call dein#add('mhartington/nvim-typescript')    " typescript stuff
 
   " colorschemes
-  call dein#add('arcticicestudio/nord-vim')
   call dein#add('morhetz/gruvbox')                " gruvbox theme
 
   " Required:
@@ -78,8 +75,7 @@ filetype plugin indent on
 syntax enable
 
 " Color Scheme settings --- {{{
-"color gruvbox
-color nord
+color gruvbox
 set background=dark
 
 " }}}
@@ -184,9 +180,6 @@ let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint']
   \ }
-
-let g:ale_completion_enabled = 1 " Type all the damn scripts
-
 " }}}
 
 " Nord config
