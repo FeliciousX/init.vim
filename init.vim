@@ -164,7 +164,6 @@ let localmapleader = ","
 " Setting up vim-airline powerline
 let g:airline_powerline_fonts = 1
 set laststatus=2
-set guifont=Hack
 
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'eruby' : 1, 'javascript.jsx' : 1 }
 let g:jsx_ext_required = 0
@@ -216,6 +215,9 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Exit from insert mode
 inoremap jk <esc>
 
+" for when Tim uses my vim
+inoremap jj <esc>
+
 " Allow moving up and down even when word is wrapped
 nnoremap j gj
 nnoremap k gk
@@ -262,6 +264,8 @@ inoremap {<cr> {<cr>}<Esc>O
 
 " Default search to use 'very magic'
 nnoremap / /\v
+
+nnoremap // y/<c-R>"<cr>
 
 " Highlights all whitespaces
 nnoremap <leader>w /\v +$/<cr>
