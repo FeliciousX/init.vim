@@ -177,14 +177,16 @@ let g:jsx_ext_required = 0
 
 " ALE Config --- {{{
 let g:ale_linters = {
-  \ 'javascript': ['eslint'],
+  \ 'vue': ['eslint'],
+  \ 'javascript': ['standard'],
   \ 'typescript': ['tslint', 'tsserver'],
   \ 'haskell': ['stack-ghc-mod', 'hlint', 'hfmt']
   \ }
 
 let g:ale_fixers = {
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint']
+  \ 'vue': ['eslint'],
+  \ 'javascript': ['standard'],
+  \ 'typescript': ['tslint', 'standard']
   \ }
 " }}}
 
