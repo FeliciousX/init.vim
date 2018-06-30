@@ -33,6 +33,7 @@ if dein#load_state(dein_path)
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('tpope/vim-repeat')
   call dein#add('scrooloose/nerdtree',
     \{'on_cmd': 'NERDTreeToggle'})
   call dein#add('Xuyuanp/nerdtree-git-plugin',
