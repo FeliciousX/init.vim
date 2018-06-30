@@ -239,37 +239,9 @@ nnoremap L $
 nnoremap _ ddkkp
 nnoremap - ddp
 
-" Make current word uppercase
-inoremap <leader><c-u> <esc>evbUea
-nnoremap <leader><c-u> evbUel
-
 " Edit .vimrc and source
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Cover word with quotation marks in normal mode and visual mode
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
-
-" Deleting stuff in/around next/last paranthesis
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F)vi(<cr>
-onoremap an( :<c-u>normal! f(bvg_<cr>
-onoremap al( :<c-u>normal! F)%bvg_<cr>
-" Deleting stuff in/around next/last curly bracket
-onoremap in{ :<c-u>normal! f{vi{<cr>
-onoremap il{ :<c-u>normal! F}vi{<cr>
-onoremap an{ :<c-u>normal! f{bvg_<cr>
-onoremap al{ :<c-u>normal! F}%bvg_<cr>
-" Deleting stuff in/around next/last square bracket
-onoremap in[ :<c-u>normal! f[vi[<cr>
-onoremap il[ :<c-u>normal! F]vi[<cr>
-onoremap an[ :<c-u>normal! f[bvg_<cr>
-onoremap al[ :<c-u>normal! F]%bvg_<cr>
-
-" Autocomplete curly bracket
-inoremap {<cr> {<cr>}<Esc>O
 
 " Default search to use 'very magic'
 nnoremap / /\v
