@@ -33,8 +33,10 @@ if dein#load_state(dein_path)
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
-  call dein#add('scrooloose/nerdtree')            " NERD Tree file browser
-  call dein#add('Xuyuanp/nerdtree-git-plugin')    " Git support in NERD Tree
+  call dein#add('scrooloose/nerdtree',
+    \{'on_cmd': 'NERDTreeToggle'})
+  call dein#add('Xuyuanp/nerdtree-git-plugin',
+    \{'on_cmd': 'NERDTreeToggle'})    " Git support in NERD Tree
   call dein#add('vim-airline/vim-airline')        " Status bar
   call dein#add('vim-airline/vim-airline-themes') " Status bar themes
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
@@ -45,15 +47,20 @@ if dein#load_state(dein_path)
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
   call dein#add('maralla/completor.vim')          " Auto complete
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('jiangmiao/auto-pairs')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('luochen1990/rainbow')
 
-  call dein#add('alx741/vim-hindent')
-  call dein#add('parsonsmatt/intero-neovim')
+  call dein#add('alx741/vim-hindent',
+    \{'on_ft': ['haskell']})
+  call dein#add('parsonsmatt/intero-neovim',
+    \{'on_ft': ['haskell']})
 
   " Syntax support
   call dein#add('pangloss/vim-javascript')
-  call dein#add('mhartington/nvim-typescript')    " typescript stuff
+  call dein#add('mhartington/nvim-typescript',
+    \{'build': './install.sh'})
 
   " colorschemes
   call dein#add('morhetz/gruvbox')                " gruvbox theme
