@@ -52,6 +52,7 @@ if dein#load_state(dein_path)
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('luochen1990/rainbow')
+  call dein#add('miyakogi/seiya.vim') " make background transparent
 
   call dein#add('alx741/vim-hindent',
     \{'on_ft': ['haskell']})
@@ -85,8 +86,7 @@ syntax enable
 
 " Color Scheme settings --- {{{
 color gruvbox
-set background=dark
-
+let g:seiya_auto_enable=1 " set transparency
 " }}}
 
 " Basic settings --- {{{
