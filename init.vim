@@ -60,9 +60,9 @@ if dein#load_state(dein_path)
     \{'on_ft': ['haskell']})
 
   " Syntax support
-  call dein#add('pangloss/vim-javascript')
+  call dein#add('pangloss/vim-javascript') " javascript syntax highlighting
   call dein#add('mhartington/nvim-typescript',
-    \{'build': './install.sh'})
+    \{'build': './install.sh'}) " typescript syntax highlighting
 
   " colorschemes
   call dein#add('morhetz/gruvbox')                " gruvbox theme
@@ -192,9 +192,9 @@ let g:ale_linters = {
   \ }
 
 let g:ale_fixers = {
-  \ 'vue': ['eslint'],
-  \ 'javascript': ['standard'],
-  \ 'typescript': ['tslint', 'standard']
+  \ 'vue': ['eslint', 'prettier'],
+  \ 'javascript': ['standard', 'prettier'],
+  \ 'typescript': ['tslint', 'standard', 'prettier']
   \ }
 " }}}
 
