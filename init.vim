@@ -267,3 +267,6 @@ nnoremap <C-t> :tabe<cr>
 " }}}
 
 set autoread " trigger filetype checking
+
+set exrc
+set secure
