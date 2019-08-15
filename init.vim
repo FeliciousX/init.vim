@@ -9,6 +9,8 @@ filetype off
 " pip3 install neovim --upgrade
 "
 " brew install neovim
+let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python2')
+let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python3')
 
 " SECTION DEIN --- {{{
 " https://github.com/Shougo/dein.vim
@@ -34,6 +36,7 @@ if dein#load_state(dein_path)
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('tpope/vim-repeat')
+  call dein#add('scrooloose/nerdcommenter')
   call dein#add('scrooloose/nerdtree',
     \{'on_cmd': 'NERDTreeToggle'})
   call dein#add('Xuyuanp/nerdtree-git-plugin',
@@ -42,15 +45,13 @@ if dein#load_state(dein_path)
   call dein#add('vim-airline/vim-airline-themes') " Status bar themes
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
   call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
-  call dein#add('jremmen/vim-ripgrep')            " search with :Rg
+  call dein#add('Numkil/ag.nvim')                 " search with silver searcher
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
   call dein#add('maralla/completor.vim')          " Auto complete
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
-  call dein#add('scrooloose/nerdcommenter')
   call dein#add('jiangmiao/auto-pairs')
-  call dein#add('sheerun/vim-polyglot')
   call dein#add('luochen1990/rainbow')
   call dein#add('miyakogi/seiya.vim') " make background transparent
 
@@ -59,14 +60,23 @@ if dein#load_state(dein_path)
   call dein#add('parsonsmatt/intero-neovim',
     \{'on_ft': ['haskell']})
 
+  " markdown preview
+  call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app & yarn install' })
+
   " Syntax support
-  call dein#add('pangloss/vim-javascript') " javascript syntax highlighting
+  call dein#add('sheerun/vim-polyglot')
   call dein#add('mhartington/nvim-typescript',
-    \{'build': './install.sh'}) " typescript syntax highlighting
+    \{'build': './install.sh'}) " typescript language service
 
   " colorschemes
   call dein#add('morhetz/gruvbox')                " gruvbox theme
   call dein#add('nathanaelkane/vim-indent-guides') " indentation guide
+
+  call dein#add('autozimu/LanguageClient-neovim', {
+        \ 'rev': 'next',
+        \ 'build': 'bash install.sh',
+        \ })
 
   " Required:
   call dein#end()
@@ -83,6 +93,8 @@ endif
 " Required:
 filetype plugin indent on
 syntax enable
+
+nnoremap <F5> :syntax sync fromstart<cr>
 
 " Color Scheme settings --- {{{
 color gruvbox
@@ -115,6 +127,41 @@ endif
 
 " deoplete settings
 let g:deoplete#enable_at_startup = 1
+" Disable the candidates in Comment/String syntaxes.
+call deoplete#custom#source('_',
+      \ 'disabled_syntaxes', ['Comment', 'String'])
+
+let g:deoplete#sources = {'_': ['ale']}
+
+call deoplete#custom#option('sources', {
+  \ 'vue': ['LanguageClient'],
+\})
+
+let g:LanguageClient_serverCommands = {
+  \ 'vue': ['vls'],
+\}
+  "\ 'javascript': ['javascript-typescript-stdio'],
+  "\ 'javascript.jsx': ['javascript-typescript-stdio'],
+  "\ 'typescript': ['javascript-typescript-stdio'],
+
+let g:LanguageClient_rootMarkers = {
+  \ 'vue': ['package.json', 'tsconfig.json', '.git'],
+\ }
+
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
+let g:LanguageClient_selectionUI = 'location-list'
+
+" keybindings for language client
+nnoremap <F4> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> gf :call LanguageClient_textDocument_codeAction()<CR>
+nnoremap <silent> gc :call LanguageClient_textDocument_formatting()<CR>
 
 " indent guide
 let g:indent_guides_enable_on_vim_startup = 1
@@ -165,10 +212,6 @@ let g:intero_start_immediately = 0
 " Use ALE (works even when not using Intero)
 let g:intero_use_neomake = 0
 
-" Set autocomplete --- {{{
-let g:completor_node_binary = '~/.nvm/versions/node/v8.9.1/bin/node'
-" }}}
-
 " Set rainbow --- {{{
 let g:rainbow_active = 1
 " }
@@ -185,9 +228,9 @@ let g:jsx_ext_required = 0
 
 " ALE Config --- {{{
 let g:ale_linters = {
-  \ 'vue': ['eslint'],
+  \ 'vue': [],
   \ 'javascript': ['standard'],
-  \ 'typescript': ['tslint', 'tsserver'],
+  \ 'typescript': [],
   \ 'haskell': ['stack-ghc-mod', 'hlint', 'hfmt']
   \ }
 
@@ -196,6 +239,8 @@ let g:ale_fixers = {
   \ 'javascript': ['standard', 'prettier'],
   \ 'typescript': ['tslint', 'standard', 'prettier']
   \ }
+
+let g:airline#extensions#ale#enabled = 1
 " }}}
 
 " Nord config
@@ -217,8 +262,8 @@ nnoremap <C-p> :FuzzyOpen<CR>
 " nnoremap <C-s> :FuzzyGrep<CR>
 " }}}
 
-" Ripgrep search --- {{{
-nnoremap <C-s> :Rg<space>
+" ag search --- {{{
+nnoremap <C-s> :Ag<space>
 " }
 
 " Toggles NERDTree
