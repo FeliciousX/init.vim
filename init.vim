@@ -18,12 +18,13 @@ if &compatible
   set nocompatible " Be iMproved
 endif
 
-let dein_path = $HOME . '/.config/nvim'
-set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim
+let dein_install_path = $HOME . '/.config/nvim'
+let dein_path = dein_install_path . '/repos/github.com/Shougo/dein.vim'
+let &runtimepath .=','.dein_path
 
 " Required:
-if dein#load_state(dein_path)
-  call dein#begin(dein_path)
+if dein#load_state(dein_install_path)
+  call dein#begin(dein_install_path)
 
   " Let dein manage dein
   " Required:
