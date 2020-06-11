@@ -52,7 +52,7 @@ if dein#load_state(dein_install_path)
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('jiangmiao/auto-pairs')
-  call dein#add('sheerun/vim-polyglot')
+  call dein#add('sheerun/vim-polyglot', {'merged': 0})
   call dein#add('luochen1990/rainbow')
   call dein#add('miyakogi/seiya.vim') " make background transparent
 
