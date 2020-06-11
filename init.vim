@@ -48,7 +48,7 @@ if dein#load_state(dein_install_path)
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
   call dein#add('Valloric/MatchTagAlways')        " HTML tag highlight and jumping
-  call dein#add('maralla/completor.vim')          " Auto complete
+  call dein#add('maralla/completor.vim', {'build': 'make js'}) " Auto complete
   call dein#add('w0rp/ale')                       " Asynchronous Lint Engine
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('jiangmiao/auto-pairs')
@@ -118,10 +118,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
-
-" Set autocomplete --- {{{
-let g:completor_node_binary = '~/.nvm/versions/node/v8.9.1/bin/node'
-" }}}
 
 " Set rainbow --- {{{
 let g:rainbow_active = 1
