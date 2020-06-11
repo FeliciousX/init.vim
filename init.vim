@@ -186,7 +186,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Exit from insert mode
 inoremap jk <esc>
 
-" for when Tim uses my vim
+" for when Dafne uses my vim
 inoremap jj <esc>
 
 " Allow moving up and down even when word is wrapped
