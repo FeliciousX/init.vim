@@ -31,6 +31,7 @@ if dein#load_state(dein_install_path)
   call dein#add(dein_path)
 
   " Add or remove your plugins here:
+  call dein#add('vimwiki/vimwiki') " vimwiki
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
@@ -203,6 +204,10 @@ let g:ale_fixers = {
 let g:nord_comment_brightness = 20
 
 " }}}
+
+" vimwiki config
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 
 " Mappings --- {{{
 
