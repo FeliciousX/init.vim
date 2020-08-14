@@ -1,15 +1,6 @@
 " File: `~/.config/nvim/init.vim`
 filetype off
 
-" Required for Python on MacOS
-"
-" brew install python
-" brew install python3
-" pip2 install neovim --upgrade
-" pip3 install neovim --upgrade
-"
-" brew install neovim
-
 " SECTION DEIN --- {{{
 " https://github.com/Shougo/dein.vim
 " Installed to ~/.config/nvim/bundle
@@ -136,15 +127,15 @@ let g:jsx_ext_required = 0
 " ALE Config --- {{{
 let g:ale_linters = {
   \ 'vue': ['eslint'],
-  \ 'javascript': ['standard'],
-  \ 'typescript': ['tslint', 'tsserver'],
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint', 'tsserver'],
   \ 'haskell': ['stack-ghc-mod', 'hlint', 'hfmt']
   \ }
 
 let g:ale_fixers = {
-  \ 'vue': ['eslint', 'prettier'],
-  \ 'javascript': ['standard', 'prettier'],
-  \ 'typescript': ['tslint', 'standard', 'prettier']
+  \ 'vue': ['eslint'],
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint']
   \ }
 " }}}
 
