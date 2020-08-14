@@ -22,6 +22,7 @@ if dein#load_state(dein_install_path)
   call dein#add(dein_path)
 
   " Add or remove your plugins here:
+  call dein#add('wsdjeg/dein-ui.vim')
   call dein#add('vimwiki/vimwiki') " vimwiki
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
@@ -34,7 +35,8 @@ if dein#load_state(dein_install_path)
   call dein#add('vim-airline/vim-airline')        " Status bar
   call dein#add('vim-airline/vim-airline-themes') " Status bar themes
   call dein#add('tpope/vim-surround')             " Vim bracket/parentheses wrapping
-  call dein#add('cloudhead/neovim-fuzzy')         " Fuzzy search with fzy
+  call dein#add('lotabout/skim', { 'build': './install' })
+  call dein#add('lotabout/skim.vim')              " fork of fzf but using skim
   call dein#add('jremmen/vim-ripgrep')            " search with :Rg
   call dein#add('tpope/vim-fugitive')             " Git stuff
   call dein#add('airblade/vim-gitgutter')         " Git annotations
@@ -76,6 +78,9 @@ syntax enable
 color gruvbox
 let g:seiya_auto_enable=1 " set transparency
 " }}}
+
+" Custom Commands
+command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 
 " Basic settings --- {{{
 set backupcopy=yes
@@ -156,15 +161,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 " }}}
 
-" Fuzzy Finder with fzy --- {{{
-nnoremap <C-p> :FuzzyOpen<CR>
-" TODO: find another replacement for FuzzyGrep binding
-" nnoremap <C-s> :FuzzyGrep<CR>
+" Open files with skim --- {{{
+nnoremap <C-p> :Files<CR>
 " }}}
 
 " Ripgrep search --- {{{
-nnoremap <C-s> :Rg<space>
-" }
+nnoremap <C-s> :Rg<CR>
+" }}}
 
 " Toggles NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
